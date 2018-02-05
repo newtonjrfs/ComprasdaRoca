@@ -1,7 +1,9 @@
-package newton.com.comprasdaroca;
+package newton.com.comprasdaroca.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import newton.com.comprasdaroca.R;
 
 public class adicionarTarefaActivity extends AppCompatActivity {
 
