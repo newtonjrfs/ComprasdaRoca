@@ -56,6 +56,19 @@ public class MainActivity extends AppCompatActivity {
         compra2.setNomeProduto("Gasolina");
         listaCompras.add(compra2);
 
+        Compra compra3 = new Compra();
+        compra3.setNomeProduto("Racao pro gado");
+        listaCompras.add(compra3);
+
+        Compra compra4 = new Compra();
+        compra4.setNomeProduto("Sal puro");
+        listaCompras.add(compra4);
+
+        Compra compra5 = new Compra();
+        compra5.setNomeProduto("Mineral das bezerras");
+        listaCompras.add(compra5);
+
+
 
 
         compraAdapter = new CompraAdapter(listaCompras);
@@ -64,9 +77,15 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayout.VERTICAL));
-        //recyclerView.setAdapter();
+        recyclerView.setAdapter(compraAdapter);
 
 
+    }
+
+    @Override
+    protected void onStart() {
+        carregarListaDeTarefas();
+        super.onStart();
     }
 
     @Override
