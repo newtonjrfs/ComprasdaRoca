@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ import java.util.List;
 import newton.com.comprasdaroca.R;
 import newton.com.comprasdaroca.activity.adicionarTarefaActivity;
 import newton.com.comprasdaroca.adapter.CompraAdapter;
+import newton.com.comprasdaroca.helper.RecyclerItemClickListener;
 import newton.com.comprasdaroca.model.Compra;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,6 +37,28 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         recyclerView = findViewById(R.id.recyclerViewId);
+
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(
+                        getApplicationContext(), recyclerView,
+                        new RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                //evento de clique rapido
+                            }
+
+                            @Override
+                            public void onLongItemClick(View view, int position) {
+                                //evento de clique longo
+                            }
+
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                            }
+                        }
+                )
+        );
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
