@@ -1,8 +1,10 @@
 package newton.com.comprasdaroca.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private CompraAdapter compraAdapter;
     private List<Compra> listaCompras = new ArrayList<>();
+    private Compra compraSelecionada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +49,47 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onItemClick(View view, int position) {
                                 //evento de clique rapido
+
+                                Compra compraSelecionada = listaCompras.get(position);
+
+                                Intent intent = new Intent(MainActivity.this,adicionarCompraActivity.class);
+
+                                intent.putExtra("compraSelecionada", compraSelecionada);
+
+                                startActivity(intent);
+
                             }
 
                             @Override
                             public void onLongItemClick(View view, int position) {
                                 //evento de clique longo
+
+                                compraSelecionada = listaCompras.get(position);
+
+                                AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
+                                dialog.setTitle("Confirmar Exclusão ");
+                                dialog.setMessage("Deseja excluir o produto " + compraSelecionada.getNomeProduto() + " ? ");
+
+                                dialog.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                        ComprasDAO comprasDAO = new ComprasDAO(getApplicationContext());
+                                        if (comprasDAO.deletar(compraSelecionada)){
+                                            carregarListaDeCompras();
+                                            Toast.makeText(getApplicationContext(),"Produto excluido com sucesso",Toast.LENGTH_LONG).show();
+                                        }else{
+                                            Toast.makeText(getApplicationContext(),"Erro ao excluir produto",Toast.LENGTH_LONG).show();
+                                        }
+
+                                        }
+                                });
+
+                            dialog.setNegativeButton("Não",null);
+
+                            dialog.create();
+                            dialog.show();
+
                             }
 
                             @Override

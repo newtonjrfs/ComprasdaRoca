@@ -42,12 +42,33 @@ public class ComprasDAO implements IComprasDAO{
 
     @Override
     public boolean atualizar(Compra compra) {
-        return false;
+
+        ContentValues cv = new ContentValues();
+        cv.put("nome",compra.getNomeProduto());
+
+        try {
+            String[]args = {compra.getId().toString()};
+            escreve.update(DbHelper.TABELA_COMPRAS,cv,"id=?",args);
+        }catch (Exception e){
+            return false;
+        }
+        return true;
     }
 
     @Override
     public boolean deletar(Compra compra) {
-        return false;
+
+        try {
+
+            String[] args = {compra.getId().toString()};
+
+            escreve.delete(DbHelper.TABELA_COMPRAS,"id = ?",args);
+
+        }catch (Exception e){
+            return false;
+        }
+
+        return true;
     }
 
     @Override
