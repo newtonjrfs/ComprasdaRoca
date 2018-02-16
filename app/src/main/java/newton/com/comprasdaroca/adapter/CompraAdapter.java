@@ -36,7 +36,7 @@ public class CompraAdapter extends RecyclerView.Adapter<CompraAdapter.MyViewHold
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
         Compra compra = listaCompra.get(position);
-        holder.tarefa.setText(compra.getNomeProduto());
+        holder.compra.setText(compra.getNomeProduto());
 
 
     }
@@ -48,12 +48,12 @@ public class CompraAdapter extends RecyclerView.Adapter<CompraAdapter.MyViewHold
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView tarefa;
+        TextView compra;
 
         public MyViewHolder(View itemView){
             super(itemView);
 
-            tarefa = itemView.findViewById(R.id.textTarefa);
+            compra = itemView.findViewById(R.id.textCompra);
 
 
         }

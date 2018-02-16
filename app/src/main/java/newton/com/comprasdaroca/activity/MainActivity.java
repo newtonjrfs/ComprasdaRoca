@@ -18,8 +18,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import newton.com.comprasdaroca.R;
-import newton.com.comprasdaroca.activity.adicionarTarefaActivity;
 import newton.com.comprasdaroca.adapter.CompraAdapter;
+import newton.com.comprasdaroca.helper.ComprasDAO;
 import newton.com.comprasdaroca.helper.RecyclerItemClickListener;
 import newton.com.comprasdaroca.model.Compra;
 
@@ -64,36 +64,16 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),adicionarTarefaActivity.class);
+                Intent intent = new Intent(getApplicationContext(),adicionarCompraActivity.class);
                 startActivity(intent);
             }
         });
     }
 
-    public void carregarListaDeTarefas(){
+    public void carregarListaDeCompras(){
 
-        Compra compra1 = new Compra();
-        compra1.setNomeProduto("Oleo");
-        listaCompras.add(compra1);
-
-        Compra compra2 = new Compra();
-        compra2.setNomeProduto("Gasolina");
-        listaCompras.add(compra2);
-
-        Compra compra3 = new Compra();
-        compra3.setNomeProduto("Racao pro gado");
-        listaCompras.add(compra3);
-
-        Compra compra4 = new Compra();
-        compra4.setNomeProduto("Sal puro");
-        listaCompras.add(compra4);
-
-        Compra compra5 = new Compra();
-        compra5.setNomeProduto("Mineral das bezerras");
-        listaCompras.add(compra5);
-
-
-
+        ComprasDAO comprasDAO = new ComprasDAO(getApplicationContext());
+        listaCompras = comprasDAO.listar();
 
         compraAdapter = new CompraAdapter(listaCompras);
 
@@ -108,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
-        carregarListaDeTarefas();
+        carregarListaDeCompras();
         super.onStart();
     }
 
