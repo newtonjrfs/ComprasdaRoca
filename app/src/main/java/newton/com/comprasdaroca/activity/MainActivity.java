@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.btn_sobre) {
-            Intent intent = new Intent(MainActivity.this,SobreActivity.class);
+            Intent intent = new Intent(MainActivity.this,sobreActivity.class);
             startActivity(intent);
             return true;
         }
