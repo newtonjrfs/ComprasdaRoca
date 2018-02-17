@@ -19,7 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.adicionarCompraActivity"></activity>
+        <activity android:name=".activity.adicionarCompraActivity" />
+        <activity android:name=".activity.SobreActivity"></activity>
     </application>
 
 </manifest>
